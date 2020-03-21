@@ -1,4 +1,5 @@
-# Project Zouwu - Time Series Solution for Telco on Analytics Zoo
+# Project Zouwu 
+# - Time Series Solution for Telco on Analytics Zoo
 
 
 ## Requirements
@@ -73,7 +74,7 @@ mtnet_forecaster = MTNetForecaster(horizon=1,
 The automated training in zouwu is built upon [Analytics Zoo AutoML module](https://github.com/intel-analytics/analytics-zoo/tree/master/pyzoo/zoo/automl), which uses [Ray Tune](https://github.com/ray-project/ray/tree/master/python/ray/tune) for hyper parameter tuning and runs on [Analytics Zoo RayOnSpark](https://analytics-zoo.github.io/master/#ProgrammingGuide/rayonspark/).  
 
 The general workflow using automated training contains below two steps. 
-   1. create a ```AutoTSTrainer``` to train a ``TSPipeline```, save it to file to use later or elsewhere if you wish.
+   1. create a ```AutoTSTrainer``` to train a ```TSPipeline```, save it to file to use later or elsewhere if you wish.
    2. use ```TSPipeline``` to do prediction, evaluation, and incremental fitting as well. 
 
 You need to initialize RayOnSpark before using auto training (i.e. ```AutoTSTrainer```), and stop it after training finished. Using TSPipeline only does not need RayOnSpark. 
