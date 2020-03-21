@@ -1,5 +1,5 @@
 # Project Zouwu 
-# - Time Series Solution for Telco on Analytics Zoo
+Time Series Solution for Telco on Analytics Zoo
 
 
 ## Requirements
