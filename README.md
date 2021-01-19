@@ -84,6 +84,40 @@ See [TensorFlow](https://analytics-zoo.readthedocs.io/en/latest/doc/Orca/QuickSt
 
 Time series prediction takes observations from previous time steps as input and predicts the values at future time steps. The _**Zouwu**_ library makes it easy to build end-to-end time series analysis by applying AutoML to extremely large-scale time series prediction.
 
+
+To train a time series model with AutoML, first initialize [Orca Context]():
+
+```python
+from zoo.orca import init_orca_context
+
+#cluster_mode can be "local", "k8s" or "yarn"
+sc = init_orca_context(cluster_mode="yarn", cores=4, memory="10g", num_nodes=2)
+```
+
+Then, create an [AutoTSTrainer]().
+
+```python
+from zoo.zouwu.autots.forecast import AutoTSTrainer
+
+trainer = AutoTSTrainer(dt_col="datetime",
+                        target_col="value",
+                        horizon=1,
+                        extra_features_col=None)
+```
+
+Last, call ```fit``` on [AutoTSTrainer]() to train a [TSPipline](), where scalable AutoML takes place to find the best hyper parameters for both feature transformation and model training. Use [TSPipeline]() to perform prediction or evaluation, or incremental fitting on new data.   
+```
+#train a pipeline with AutoML support
+ts_pipeline = trainer.fit(train_df, validation_df)
+#incremental training
+ts_pipeline.fit(new_train_df, new_val_df, epochs=10)
+#predict/evaluate
+ts_pipeline.evaluate(val_df)
+ts_pipeline.predict(test_df) 
+```
+
+You can also use the models directly without AutoML, e.g. [LSTMForecaster](), [MTNetForecaster](). 
+
 See the Zouwu [user guide]() for more details.
 
 ## Getting Started with RayOnSpark
