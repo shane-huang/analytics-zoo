@@ -106,7 +106,7 @@ trainer = AutoTSTrainer(dt_col="datetime",
 ```
 
 Last, call ```fit``` on [AutoTSTrainer]() to train a [TSPipline](), where scalable AutoML takes place to find the best hyper parameters for both feature transformation and model training. Use [TSPipeline]() to perform prediction or evaluation, or incremental fitting on new data.   
-```
+```python
 #train a pipeline with AutoML support
 ts_pipeline = trainer.fit(train_df, validation_df)
 #incremental training
