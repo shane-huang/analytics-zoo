@@ -12,7 +12,7 @@ The general workflow has two steps:
 
 Refer to [AutoTS notebook demo]() for demonstration how to use AutoTS to build a time series forcasting pipeline, and [AutoTS API Spec]() for more details.
 
-#### **1.1 Install Dependencies **
+#### **1.1 Install Dependencies**
 
 Zouwu depends on below python libraries. 
 
