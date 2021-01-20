@@ -1,7 +1,7 @@
 # Zouwu User Guide
 
 ---
-### 1. Training with AutoML
+### **1. Training with AutoML**
 
 To train a time series model with AutoML, use the AutoTS package.
 
