@@ -97,12 +97,11 @@ Use ```AutoTSTrainer.fit``` on train on input data and/or validation data with A
 ts_pipeline = trainer.fit(train_df, validation_df)
 ```
 Both [AutoTSTrainer]() and [TSPipeline]() accepts pandas data frames as input. An example input data looks like below. 
-
-|datetime|value|extra_feature_1|extra_feature_2|
-| --------|----- |---| ---|
-|2019-06-06|1.2|1|2|
-|2019-06-07|2.3|0|2|
-
+```bash
+datetime    value  extra_feature_1  extra_feature_2
+2019-06-06  1.2    1                2
+2019-06-07  2.30   2                1
+```
 You can use built-in [visualizaiton tool]() to inspect the training results. 
 
 #### **1.5 Terminate Orca Context**
@@ -143,7 +142,7 @@ Zouwu provides below time series models for you to use without AutoML.
 * [TCMFForecaster]()
 * [TCNForecaster]()
 
-#### **2.1 Install Dependencies **
+#### **2.1 Install Dependencies**
 
 Zouwu depends on below python libraries. 
 
@@ -170,7 +169,7 @@ conda activate zoo
 pip install analytics-zoo[automl]==0.9.0.dev0 # or above
 ```
 
-#### **2.2 Initialize Orca Context **
+#### **2.2 Initialize Orca Context**
 
 Our built-in models support distributed training, which relies on [Orca](), so you need to initalize [OrcaContext](https://testshanedoc.readthedocs.io/en/latest/doc/Orca/Overview/orca-context.html) before training and stop it after training is completed. 
 
@@ -300,8 +299,9 @@ model.fit(
         num_workers=num_workers_for_fit)
 ```
  * evaluate
- You can either call evalute directly 
  
+ You can either call evalute directly 
+
 ```python
 model.evaluate(target_value,
                metric=['mae'],
