@@ -1,18 +1,17 @@
 # Zouwu User Guide
 
----
-### **1. Training with AutoML**
+### **1. Overview**
+Project Zouwu provides a toolkit and reference solution that is designed and optimized for common time series applications in the Telco industry. 
 
-To train a time series model with AutoML, use the AutoTS package.
+With Zouwu, you can either use AutoML enabled pipeline interface to build end-to-end time series analysis pipelines (i.e. [AutoTS]()), or you can directly use built-in deep learning models and/or other pipeline modules for time series analysis without AutoML(e.g. [LSTMForecaster](), [MTNetForecaster]() and [TCMFForecaster]())
 
-The general workflow has two steps:
+Zouwu also provides reference time series use cases solutions in the Telco industry.
 
-* create a [AutoTSTrainer]() to train a [TSPipeline](), save it to file to use later or elsewhere if you wish.
-* use [TSPipeline]() to do prediction, evaluation, and incremental fitting as well.
+- Time series forecasting has many applications in telco. Accurate forecast of telco KPIs (e.g. traffic, utilizations, user experience, etc.) for communication networks ( 2G/3G/4G/5G/wired) can help predict network failures, allocate resource, or save energy. Time series forecasting can also be used for log and metric analysis for data center IT operations for telco. Metrics to be analyzed can be hardware or VM utilizations, database metrics or servce quality indicators. We provided a reference use case where we forecast network traffic KPI's as a demo. Refer to [Network Traffic Notebook] for forecasting.
 
-Refer to [AutoTS notebook demo]() for demonstration how to use AutoTS to build a time series forcasting pipeline, and [AutoTS API Spec]() for more details.
+- Anomaly detection 
 
-#### **1.1 Install Dependencies**
+#### **2 Install Dependencies**
 
 Zouwu depends on below python libraries. 
 
@@ -39,7 +38,21 @@ conda activate zoo
 pip install analytics-zoo[automl]==0.9.0.dev0 # or above
 ```
 
-#### **1.2 Initialize Orca Context**
+---
+### **3. Use AutoML**
+
+To train a time series model with AutoML, use the AutoTS package.
+
+The general workflow has two steps:
+
+* create a [AutoTSTrainer]() to train a [TSPipeline](), save it to file to use later or elsewhere if you wish.
+* use [TSPipeline]() to do prediction, evaluation, and incremental fitting as well.
+
+Refer to [AutoTS notebook demo]() for demonstration how to use AutoTS to build a time series forcasting pipeline, and [AutoTS API Spec]() for more details.
+
+
+#### **3.3 Prepare Your data
+#### **3.1 Initialize Orca Context**
 
 Training with AutoML (i.e. ```AutoTSTrainer.fit```) relies on [RayOnSpark]() to run, so you need to initalize [OrcaContext](https://testshanedoc.readthedocs.io/en/latest/doc/Orca/Overview/orca-context.html) with argument ```init_ray_on_spark=True``` before the training, and stop it after training is completed. 
 
@@ -65,7 +78,7 @@ init_orca_context(cluster_mode="yarn-client",
                   object_store_memory='5g')
 ```
 
-#### **1.3 Create an AutoTSTrainer**
+#### **3.2 Create an AutoTSTrainer**
 
 Create an AutoTSTrainer.
 
@@ -89,7 +102,7 @@ Some of the key arguments for AutoTSTrainer are:
 
 Refer to [AutoTSTrainer API]() for more details.
 
-#### **1.4 Train a pipeline**
+#### **3.3 Train a pipeline**
 
 Use ```AutoTSTrainer.fit``` on train on input data and/or validation data with AutoML. A [TSPipeline]() will be returned. A TSPipeline include not only the mode, but also data preprocessing/post processing. 
 
