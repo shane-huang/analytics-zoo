@@ -42,7 +42,7 @@ pip install analytics-zoo[automl]==0.9.0.dev0 # or above
 ```
 
 ---
-### **3. Use AutoML-enabled API **
+### **3. Use AutoML-enabled API**
 
 You can use the **```AutoTS```** package to train a time series model with AutoML. 
 
@@ -80,7 +80,7 @@ init_orca_context(cluster_mode="yarn-client",
                   object_store_memory='5g')
 ```
 
-#### **3.2 Prepare Your data
+#### **3.2 Prepare Your data**
 
 You should prepare a training dataset, and/or a validation dataset. If you have one time series data and you want both a training dataset and a validation dataset, you can break it into two segments in time line. Usually the validation dataset should come later in time than training dataset. 
 
