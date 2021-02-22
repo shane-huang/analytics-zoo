@@ -94,31 +94,25 @@ from zoo.orca import init_orca_context
 sc = init_orca_context(cluster_mode="yarn", cores=4, memory="10g", num_nodes=2, init_ray_on_spark=True)
 ```
 
-Then, create an [AutoTSTrainer]().
+Next, create an _AutoTSTrainer_.
 
 ```python
 from zoo.zouwu.autots.forecast import AutoTSTrainer
 
-trainer = AutoTSTrainer(dt_col="datetime",
-                        target_col="value",
-                        horizon=1,
-                        extra_features_col=None)
+trainer = AutoTSTrainer(dt_col="datetime", target_col="value")
 ```
 
-Last, call ```fit``` on [AutoTSTrainer]() to train a [TSPipline](), where scalable AutoML takes place to find the best hyper parameters for both feature transformation and model training. Use [TSPipeline]() to perform prediction or evaluation, or incremental fitting on new data.
+Finally, call ```fit``` on _AutoTSTrainer_, which applies AutoML to find the best model and hyper-parameters; it returns a _TSPipeline_ which can be used for prediction or evaluation.
+
 ```python
 #train a pipeline with AutoML support
 ts_pipeline = trainer.fit(train_df, validation_df)
-#incremental training
-ts_pipeline.fit(new_train_df, new_val_df, epochs=10)
-#predict/evaluate
-ts_pipeline.evaluate(val_df)
+
+#predict
 ts_pipeline.predict(test_df)
 ```
 
-You can also use the models directly without AutoML, e.g. [LSTMForecaster](), [MTNetForecaster]().
-
-See the Zouwu [user guide]() for more details.
+See the Zouwu [user guide](https://analytics-zoo.readthedocs.io/en/latest/doc/UserGuide/zouwu.html) for more details.
 
 ## Getting Started with RayOnSpark
 
