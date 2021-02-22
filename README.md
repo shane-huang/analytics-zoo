@@ -91,7 +91,7 @@ To train a time series model with AutoML, first initialize [Orca Context]():
 from zoo.orca import init_orca_context
 
 #cluster_mode can be "local", "k8s" or "yarn"
-sc = init_orca_context(cluster_mode="yarn", cores=4, memory="10g", num_nodes=2)
+sc = init_orca_context(cluster_mode="yarn", cores=4, memory="10g", num_nodes=2,init_ray_on_spark=True)
 ```
 
 Then, create an [AutoTSTrainer]().
